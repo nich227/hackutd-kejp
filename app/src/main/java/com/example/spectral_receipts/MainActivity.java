@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_camera) {
             startActivity(new Intent(MainActivity.this, QRActivity.class));
         } else if (id == R.id.nav_receipts){
-
+            startActivity(new Intent(MainActivity.this, show_receipts.class));
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
