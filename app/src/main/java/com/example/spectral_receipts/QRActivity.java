@@ -27,6 +27,13 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -37,7 +44,7 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
     private static int camId = Camera.CameraInfo.CAMERA_FACING_BACK;
-
+    String json = "...";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -156,6 +163,8 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
             }
         });
         builder.setMessage(result.getText());
+        //Function call to parse string
+        parseString(result.getText());
         AlertDialog alert1 = builder.create();
         alert1.show();
     }
@@ -168,5 +177,43 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
             System.err.println("ERROR: IOException in QRActivity.writeToFile");
         }
     }
+
+    public String parseString(String result) {
+        try{
+                JSONObject obj = new JSONObject(json);
+                String pageName = obj.getJSONObject("pageInfo").getString("pageName");
+
+                System.out.println(pageName);
+
+                JSONArray arr = obj.getJSONArray("posts");
+                for (int i = 0; i < arr.length(); i++) {
+                    String post_id = arr.getJSONObject(i).getString("post_id");
+                    System.out.println(post_id);
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+    }
+
+    /*public class ParseJSON {
+        String json = "...";
+        public void main(String[] args) {
+            try{
+                JSONObject obj = new JSONObject(json);
+                String pageName = obj.getJSONObject("pageInfo").getString("pageName");
+
+                System.out.println(pageName);
+
+                JSONArray arr = obj.getJSONArray("posts");
+                for (int i = 0; i < arr.length(); i++) {
+                    String post_id = arr.getJSONObject(i).getString("post_id");
+                    System.out.println(post_id);    
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+
+        }
+    }*/
 }
 
