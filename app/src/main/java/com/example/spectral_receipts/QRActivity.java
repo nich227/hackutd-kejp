@@ -175,7 +175,7 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
         }
     }
 
-    public String parseString(Result result) {
+    public void parseString(Result result) {
         try{
                 JSONObject obj = new JSONObject(result.getText());
                 
@@ -205,7 +205,6 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
             }catch(Exception e){
                 e.printStackTrace();
             }
-            return "Hello world!";
     }
     
 }
