@@ -1,6 +1,7 @@
 package com.example.spectral_receipts;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 
 public class Receipt {
     protected String time, vendor, address, phone, person, payment_method, payment_details, extra_details;
@@ -31,11 +32,16 @@ public class Receipt {
                 + "\n" + person
                 + "Items: \n";
         for (int i = 0; i < items.length(); i++) {
-            toreturn +="\n"
-                    +"\nName: "items.getJSONObject(i).getString("name");
-            +"\nQuantity: "items.getJSONObject(i).getString("quantity");
-            +"\nPrice Each: "items.getJSONObject(i).getString("priceeach");
-            +"\nTotal Cost for Item: "items.getJSONObject(i).getString("totalcost");
+            try {
+                toreturn += "\n"
+                        + "\nName: " + items.getJSONObject(i).getString("name")
+                        + "\nQuantity: " + items.getJSONObject(i).getString("quantity")
+                        + "\nPrice Each: " + items.getJSONObject(i).getString("priceeach")
+                        + "\nTotal Cost for Item: " + items.getJSONObject(i).getString("totalcost");
+            } catch(JSONException jse){
+                jse.printStackTrace();
+                System.err.println("ERROR in Receipt.toString: JSONException");
+            }
         }
         toreturn +="\n"
                 + "Total Before Tax: " + total_before_tax
