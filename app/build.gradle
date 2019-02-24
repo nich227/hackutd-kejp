@@ -32,4 +32,5 @@ dependencies {
     implementation 'me.dm7.barcodescanner:zxing:1.9'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
     implementation 'com.googlecode.json-simple:json-simple:1.1'
+    implementation 'com.google.android.gms:play-services-maps:16.1.0'
 }

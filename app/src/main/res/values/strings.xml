@@ -9,5 +9,5 @@
     <string name="action_receipts">Receipts</string>
     <string name="action_about">About</string>
     <string name="title_activity_qr">Scan QR Code</string>
-    <string name="title_activity_show_receipts">show_receipts</string>
+    <string name="title_activity_show_receipts">Receipts</string>
 </resources>
