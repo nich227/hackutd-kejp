@@ -181,11 +181,11 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
     public String parseString(Result result) {
         try{
                 JSONObject obj = new JSONObject(result.getText());
-                String pageName = obj.getJSONObject("time_of_purchase").getString("time_of_purchase");
+                String pageName = obj.getJSONObject("00417230").getString("time_of_purchase");
 
                 System.out.println("HERE --------------------------------------------------------------- " + pageName);
 
-                JSONArray arr = obj.getJSONArray("posts");
+                JSONArray arr = obj.getJSONArray("post");
                 for (int i = 0; i < arr.length(); i++) {
                     String post_id = arr.getJSONObject(i).getString("post_id");
                     System.out.println(post_id);
