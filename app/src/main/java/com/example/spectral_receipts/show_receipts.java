@@ -25,6 +25,7 @@ import static com.example.spectral_receipts.R.id.receipts_scroll_text;
 public class show_receipts extends AppCompatActivity {
 
     private List<String> receipt_json_file_names = null;
+    private List<String> json_data = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class show_receipts extends AppCompatActivity {
         setContentView(R.layout.activity_show_receipts);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ((TextView)findViewById(receipts_scroll_text)).setMovementMethod(new ScrollingMovementMethod());
+        ((TextView)findViewById(R.id.receipts_scroll_text)).setMovementMethod(new ScrollingMovementMethod());
 
         AssetManager assets = getAssets();
         String[] files = null;
@@ -45,22 +46,28 @@ public class show_receipts extends AppCompatActivity {
 
         receipt_json_file_names = new ArrayList<>(Arrays.asList(files));
 
-        ((TextView)findViewById(receipts_scroll_text)).setText(this.getAllReceiptsData(assets));
+        for (String in : receipt_json_file_names) {
+            json_data.add(getAllReceiptsData(assets, in));
+        }
+
+        int i = 0;
+        for(String json : json_data) {
+            ((TextView) findViewById(R.id.receipts_scroll_text)).append(json_data.get(i));
+            i++;
+        }
     }
 
-    public String getAllReceiptsData(AssetManager manager){
+    public String getAllReceiptsData(AssetManager manager, String f_name){
         byte[] formArray = new byte[1];
         if(receipt_json_file_names == null){
             System.err.println("ERROR: show_receipts.receipt_json_file_names was not properly initialized.");
         } else{
             try {
                 InputStream is;
-                for (String in : receipt_json_file_names) {
-                     is = manager.open(in);
-                     formArray = new byte[is.available()];
-                     is.read(formArray);
-                     is.close();
-                }
+                is = manager.open(f_name);
+                formArray = new byte[is.available()];
+                is.read(formArray);
+                is.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
