@@ -31,9 +31,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
-
-
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -178,7 +175,7 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
         }
     }
 
-    public String parseString(Result result) {
+    public void parseString(Result result) {
         try{
                 JSONObject obj = new JSONObject(result.getText());
                 
@@ -203,12 +200,11 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
                     String totalC = arr.getJSONObject(i).getString("totalcost");
                 }
 
-                Receipt r = new Receipt();
+                Receipt r = new Receipt(timeP, vend, addr, phone, pers, payM, payD, extD, arr, totB, ta, totT);
 
             }catch(Exception e){
                 e.printStackTrace();
             }
-            return "Hello world!";
     }
     
 }
