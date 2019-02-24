@@ -1,17 +1,12 @@
 package com.example.spectral_receipts;
 
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
-
 public class Receipt {
-    protected String time, vendor, address, phone, person, payment_method, payment_details, extra_details, id;
+    protected String time, vendor, address, phone, person, payment_method, payment_details, extra_details, name, quantity, priceeach, totalcost;
     protected String[] items;
-    protected double total_before_tax, tax, total_w_tax;
-
-    //DatabaseReference qrCode;
+    protected String total_before_tax, tax, total_w_tax;
 
     //Constructor that takes in all the parameters from the json file
-    Receipt(String t, String v, String add, String pho, String per, String payM, String payD, String extraD, String[] i, double tot, double ta, double totW, String iD) {
+    Receipt(String t, String v, String add, String pho, String per, String payM, String payD, String extraD, String[] i, String tot, String ta, String totW, String na, String quan, String priceE, String totalC) {
         this.time = t;
         this.vendor = v;
         this.address = add;
@@ -24,10 +19,55 @@ public class Receipt {
         this.total_before_tax = tot;
         this.tax = ta;
         this.total_w_tax = totW;
-        this.id = iD;
-        //qrCode = FirebaseDatabase.getInstance().getReference();
+        this.name = na;
+        this.quantity = quan;
+        this.priceeach = priceE;
+        this.totalcost = totalC;
 
-        //qrCode.push();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getPriceeach() {
+        return priceeach;
+    }
+
+    public void setPriceeach(String priceeach) {
+        this.priceeach = priceeach;
+    }
+
+    public String getTotalcost() {
+        return totalcost;
+    }
+
+    public void setTotalcost(String totalcost) {
+        this.totalcost = totalcost;
+    }
+
+    public void setTotal_before_tax(String total_before_tax) {
+        this.total_before_tax = total_before_tax;
+    }
+
+    public void setTax(String tax) {
+        this.tax = tax;
+    }
+
+    public void setTotal_w_tax(String total_w_tax) {
+        this.total_w_tax = total_w_tax;
     }
 
     public String getTime() {
