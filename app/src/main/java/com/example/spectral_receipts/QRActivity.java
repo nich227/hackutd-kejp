@@ -23,6 +23,11 @@ import android.widget.Toast;
 
 import com.google.zxing.Result;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 import static android.Manifest.permission.CAMERA;
@@ -153,6 +158,15 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
         builder.setMessage(result.getText());
         AlertDialog alert1 = builder.create();
         alert1.show();
+    }
+
+    public void writeToFile(String file_name_and_location,String json_content){
+        try {
+            new BufferedWriter(new FileWriter(new File(file_name_and_location))).write(json_content);
+        } catch(IOException ioex){
+            ioex.printStackTrace();
+            System.err.println("ERROR: IOException in QRActivity.writeToFile");
+        }
     }
 }
 
