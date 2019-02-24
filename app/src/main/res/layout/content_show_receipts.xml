@@ -10,18 +10,19 @@
 
     <TextView
         android:id="@+id/receipts_scroll_text"
-        android:layout_width="405dp"
-        android:layout_height="644dp"
-        android:layout_marginTop="45dp"
+        android:layout_width="382dp"
+        android:layout_height="605dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="6dp"
         android:layout_marginBottom="7dp"
         android:scrollbars="vertical"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.608"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.0"
         tools:text="@string/title_activity_show_receipts" />
 
 </android.support.constraint.ConstraintLayout>
