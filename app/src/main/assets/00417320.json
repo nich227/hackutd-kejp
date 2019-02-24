@@ -9,14 +9,14 @@
             {
                 "name": "Apple",
                 "quantity": 5,
-                "priceeach": 3.52,
-                "totalcost": 17.6
+                "price_each": 3.52,
+                "total_cost": 17.6
             },
             {
                 "name": "Arriba Salsa Mild Jar",
                 "quantity": 25,
-                "priceeach": 1.25,
-                "totalcost": 31.25
+                "price_each": 1.25,
+                "total_cost": 31.25
             }
 
         ],

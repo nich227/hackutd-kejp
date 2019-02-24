@@ -65,7 +65,11 @@ public class show_receipts extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        return new String(formArray);
+        return new String(formArray).replace("{","")
+                .replace("},","").replace("}","")
+                .replace("[","").replace("]","")
+                .replace("_"," ")
+                .replace(",","");
     }
 
 }
