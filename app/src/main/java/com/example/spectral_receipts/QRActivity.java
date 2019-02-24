@@ -195,13 +195,12 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
                 String extD = obj.getJSONObject(obj.keys().next()).getString("extra_details");
 
 
-                JSONArray arr = obj.getJSONArray("items");
+                JSONArray arr = obj.getJSONObject(obj.keys().next()).getJSONArray("items");
                 for (int i = 0; i < arr.length(); i++) {
                     String name = arr.getJSONObject(i).getString("name");
                     String quant = arr.getJSONObject(i).getString("quantity");
-                    String priceE = arr.getJSONObject(i).getString("price_each");
-                    String totalC = arr.getJSONObject(i).getString("total_cost");
-                    System.out.println("-----------------------"+name + " " + quant + "  " + priceE + " " + totalC + "--------------------------------------");
+                    String priceE = arr.getJSONObject(i).getString("priceeach");
+                    String totalC = arr.getJSONObject(i).getString("totalcost");
                 }
             }catch(Exception e){
                 e.printStackTrace();
