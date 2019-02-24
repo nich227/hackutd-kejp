@@ -34,6 +34,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ScrollView
+            android:id="@+id/receipts_scroll"
+            style="@android:style/Widget.ScrollView"
+            android:layout_width="395dp"
+            android:layout_height="624dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="43dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:scrollbarStyle="insideOverlay"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ScrollView>
+
         <TextView
             android:id="@+id/receipts_scroll_text"
             android:layout_width="405dp"
@@ -47,20 +64,6 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@string/title_activity_show_receipts" />
 
-        <ScrollView
-            android:id="@+id/receipts_scroll"
-            android:layout_width="395dp"
-            android:layout_height="624dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="43dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </ScrollView>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

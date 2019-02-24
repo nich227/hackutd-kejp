@@ -1,5 +1,6 @@
 package com.example.spectral_receipts;
 
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
@@ -18,7 +21,7 @@ import org.json.*;
 
 public class show_receipts extends AppCompatActivity {
 
-    private List<File> receipt_json_file_names = null;
+    private List<String> receipt_json_file_names = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,74 +30,40 @@ public class show_receipts extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        File file_list[] = new File(Environment.getExternalStorageDirectory().toString()+"/assets/").listFiles();
-        if(file_list == null)
-            System.out.println("IS NULL!!!!!!!!!!!!!!!!!!!!!!!!!" + Environment.getExternalStorageDirectory().toString());
-        else
-            receipt_json_file_names = new ArrayList<>(Arrays.asList(file_list));
-        System.out.println(receipt_json_file_names.get(0));
+        AssetManager assets = getAssets();
+        String[] files = null;
+        try {
+             files = assets.list("");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        ((TextView)findViewById(R.id.receipts_scroll_text)).setText(this.getAllReceiptsData());
+
+        receipt_json_file_names = new ArrayList<>(Arrays.asList(files));
+
+        ((TextView)findViewById(R.id.receipts_scroll_text)).setText(this.getAllReceiptsData(assets));
     }
 
-    public String getAllReceiptsData(){
+    public String getAllReceiptsData(AssetManager manager){
         String toreturn = "";
+        byte[] formArray = new byte[1];
         if(receipt_json_file_names == null){
             System.err.println("ERROR: show_receipts.receipt_json_file_names was not properly initialized.");
         } else{
             try {
+                InputStream is;
                 System.out.println("FILES COUNT:::::::::::::::::::::::::::::::::::::: " + receipt_json_file_names.size());
-                for (File in : receipt_json_file_names) {
-                    if(in.isFile()) {
-                        System.out.println("THINGGGGG:::::::::" + in.getName());
-                        JSONObject json_obj = new JSONObject("assets/" + in.getName());
-                        toreturn += "New Receipt from "
-                                + json_obj.getString("time_of_purchase")
-                                + ":\nIdentifier: "
-                                + json_obj.getString("identifier")
-                                + "\nVendor: "
-                                + json_obj.getString("vendor")
-                                + "\nAddress: "
-                                + json_obj.getString("address")
-                                + "\nPhone: "
-                                + json_obj.getString("phone")
-                                + "\nPerson: "
-                                + json_obj.getString("person")
-                                + "\nItems:\n";
-                        JSONArray items = json_obj.getJSONArray("items");
-                        for (int i = 0; i < items.length(); i++) {
-                            JSONObject item_obj = items.getJSONObject(i);
-                            toreturn += "\n" + item_obj.getString("name")
-                                    + "\nquantity:"
-                                    + item_obj.getString("quantity")
-                                    + "\nprice per item:"
-                                    + item_obj.getString("priceeach")
-                                    + "\ntotal cost:"
-                                    + item_obj.getString("totalcost")
-                                    + "\n";
-                        }
-
-                        toreturn += "total before tax: "
-                                + json_obj.getString("total_before_tax")
-                                + "\ntax: "
-                                + json_obj.getString("tax")
-                                + "\ntotal with tax: "
-                                + json_obj.getString("total_with_tax")
-                                + "\npayment method: "
-                                + json_obj.getString("payment_method")
-                                + "\npayment details: "
-                                + json_obj.getString("payment_details")
-                                + "\nextra details: "
-                                + json_obj.getString("extra_details")
-                                + "\n";
-                    }
+                for (String in : receipt_json_file_names) {
+                     is = manager.open(in);
+                     formArray = new byte[is.available()];
+                     is.read(formArray);
+                     is.close();
                 }
-            } catch(JSONException jse){
-                jse.printStackTrace();
-                System.err.println("Error: JSON Exception in show_receipts.getAllReceiptsData()");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
-        return toreturn;
+        return new String(formArray);
     }
 
 }
