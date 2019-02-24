@@ -22,6 +22,26 @@ public class Receipt {
         this.tax = ta;
         this.total_w_tax = totW;
     }
+
+    public String toString(){
+        String toreturn = vendor
+                + "\nPhone: " + phone
+                + "\nAddress: " + address
+                + "\nDate: " + time
+                + "\n" + person
+                + "Items: \n";
+        for (int i = 0; i < items.length(); i++) {
+            toreturn +="\n"
+                    +"\nName: "items.getJSONObject(i).getString("name");
+            +"\nQuantity: "items.getJSONObject(i).getString("quantity");
+            +"\nPrice Each: "items.getJSONObject(i).getString("priceeach");
+            +"\nTotal Cost for Item: "items.getJSONObject(i).getString("totalcost");
+        }
+        toreturn +="\n"
+                + "Total Before Tax: " + total_before_tax
+                + "Tax: " + tax
+                + "Total With Tax: " + total_w_tax + "\n\n";
+    }
     
     public String getTime() {
         return time;
@@ -119,10 +139,3 @@ public class Receipt {
         this.total_w_tax = total_w_tax;
     }
 }
-
-/*for (int i = 0; i < arr.length(); i++) {
-                    String name = arr.getJSONObject(i).getString("name");
-                    String quant = arr.getJSONObject(i).getString("quantity");
-                    String priceE = arr.getJSONObject(i).getString("priceeach");
-                    String totalC = arr.getJSONObject(i).getString("totalcost");
-                }*/
