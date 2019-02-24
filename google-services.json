@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "690477212944",
+    "firebase_url": "https://hackutd-70956.firebaseio.com",
+    "project_id": "hackutd-70956",
+    "storage_bucket": "hackutd-70956.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:690477212944:android:9b8fe6de5934be6f",
+        "android_client_info": {
+          "package_name": "com.example.spectral_receipts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "690477212944-ufgu65ug3lg31c3c9q85poajvl4gmv2o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkB_QtaX5MhhrmY7-8QR5IC9M7oB_P0Sg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
