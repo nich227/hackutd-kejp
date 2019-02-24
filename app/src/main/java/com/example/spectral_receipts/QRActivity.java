@@ -202,6 +202,9 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
                     String priceE = arr.getJSONObject(i).getString("priceeach");
                     String totalC = arr.getJSONObject(i).getString("totalcost");
                 }
+
+                Receipt r = new Receipt();
+
             }catch(Exception e){
                 e.printStackTrace();
             }

@@ -1,12 +1,14 @@
 package com.example.spectral_receipts;
 
+import org.json.JSONArray;
+
 public class Receipt {
-    protected String time, vendor, address, phone, person, payment_method, payment_details, extra_details, name, quantity, priceeach, totalcost;
-    protected String[] items;
+    protected String time, vendor, address, phone, person, payment_method, payment_details, extra_details;
+    protected JSONArray items;
     protected String total_before_tax, tax, total_w_tax;
 
     //Constructor that takes in all the parameters from the json file
-    Receipt(String t, String v, String add, String pho, String per, String payM, String payD, String extraD, String[] i, String tot, String ta, String totW, String na, String quan, String priceE, String totalC) {
+    Receipt(String t, String v, String add, String pho, String per, String payM, String payD, String extraD, JSONArray i, String tot, String ta, String totW) {
         this.time = t;
         this.vendor = v;
         this.address = add;
@@ -19,57 +21,8 @@ public class Receipt {
         this.total_before_tax = tot;
         this.tax = ta;
         this.total_w_tax = totW;
-        this.name = na;
-        this.quantity = quan;
-        this.priceeach = priceE;
-        this.totalcost = totalC;
-
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getPriceeach() {
-        return priceeach;
-    }
-
-    public void setPriceeach(String priceeach) {
-        this.priceeach = priceeach;
-    }
-
-    public String getTotalcost() {
-        return totalcost;
-    }
-
-    public void setTotalcost(String totalcost) {
-        this.totalcost = totalcost;
-    }
-
-    public void setTotal_before_tax(String total_before_tax) {
-        this.total_before_tax = total_before_tax;
-    }
-
-    public void setTax(String tax) {
-        this.tax = tax;
-    }
-
-    public void setTotal_w_tax(String total_w_tax) {
-        this.total_w_tax = total_w_tax;
-    }
-
+    
     public String getTime() {
         return time;
     }
@@ -134,35 +87,42 @@ public class Receipt {
         this.extra_details = extra_details;
     }
 
-    public String[] getItems() {
+    public JSONArray getItems() {
         return items;
     }
 
-    public void setItems(String[] items) {
+    public void setItems(JSONArray items) {
         this.items = items;
     }
 
-    public double getTotal_before_tax() {
+    public String getTotal_before_tax() {
         return total_before_tax;
     }
 
-    public void setTotal_before_tax(double total_before_tax) {
+    public void setTotal_before_tax(String total_before_tax) {
         this.total_before_tax = total_before_tax;
     }
 
-    public double getTax() {
+    public String getTax() {
         return tax;
     }
 
-    public void setTax(double tax) {
+    public void setTax(String tax) {
         this.tax = tax;
     }
 
-    public double getTotal_w_tax() {
+    public String getTotal_w_tax() {
         return total_w_tax;
     }
 
-    public void setTotal_w_tax(double total_w_tax) {
+    public void setTotal_w_tax(String total_w_tax) {
         this.total_w_tax = total_w_tax;
     }
 }
+
+/*for (int i = 0; i < arr.length(); i++) {
+                    String name = arr.getJSONObject(i).getString("name");
+                    String quant = arr.getJSONObject(i).getString("quantity");
+                    String priceE = arr.getJSONObject(i).getString("priceeach");
+                    String totalC = arr.getJSONObject(i).getString("totalcost");
+                }*/
