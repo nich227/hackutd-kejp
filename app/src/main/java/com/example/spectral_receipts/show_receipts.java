@@ -12,9 +12,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileReader;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.*;
+import org.json.*;
 
 public class show_receipts extends AppCompatActivity {
 
@@ -43,8 +41,27 @@ public class show_receipts extends AppCompatActivity {
         if(receipt_json_file_names == null){
             System.err.println("ERROR: show_receipts.receipt_json_file_names was not properly initialized.");
         } else{
-            for(File in : receipt_json_file_names) {
-                JSONObject input_json = new JSONParser().parse(new FileReader(in));
+            try {
+                for (File in : receipt_json_file_names) {
+                    JSONObject json_obj = new JSONObject(in.getName());
+                    toreturn +="New Receipt from "
+                             + json_obj.getString("time_of_purchase")
+                             + ":\nIdentifier: "
+                             + json_obj.getString("identifier")
+                             + "\nVendor: "
+                             + json_obj.getString("vendor")
+                             + "\nAddress: "
+                             + json_obj.getString("address")
+                             + "\nPhone: "
+                             + json_obj.getString("phone")
+                             + "\nPerson: "
+                             + json_obj.getString("person")
+                             + "\nItems:";
+                   // for()
+                }
+            } catch(JSONException jse){
+                jse.printStackTrace();
+                System.err.println("Error: JSON Exception in show_receipts.getAllReceiptsData()");
             }
         }
         return toreturn;
