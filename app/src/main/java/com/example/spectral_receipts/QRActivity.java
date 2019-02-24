@@ -29,9 +29,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 
 
@@ -164,7 +164,7 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
         });
         builder.setMessage(result.getText());
         //Function call to parse string
-        parseString(result.getText());
+        parseString(result);
         AlertDialog alert1 = builder.create();
         alert1.show();
     }
@@ -178,9 +178,9 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
         }
     }
 
-    public String parseString(String result) {
+    public String parseString(Result result) {
         try{
-                JSONObject obj = new JSONObject(json);
+                JSONObject obj = new JSONObject(result.getText());
                 String pageName = obj.getJSONObject("time_of_purchase").getString("time_of_purchase");
 
                 System.out.println("HERE --------------------------------------------------------------- " + pageName);
@@ -193,6 +193,7 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
             }catch(Exception e){
                 e.printStackTrace();
             }
+            return "Hello world!";
     }
 
     /*public class ParseJSON {
