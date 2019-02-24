@@ -1,0 +1,31 @@
+{
+  "00213430" : {
+    "address" : "2400 North Loop Road, Richardson, TX 75080",
+    "extra_details" : "Remaining Balance: $ 3.84",
+    "items" : [ {
+      "name" : "Dr. Pepper",
+      "priceeach" : 2.50,
+      "quantity" : 8,
+      "totalcost" : 20
+    }, {
+      "name" : Pencil",
+      "priceeach" : 1.25,
+      "quantity" : 25,
+      "totalcost" : 31.25
+    }, {
+      "name" : Pen",
+      "priceeach" : 1.55,
+      "quantity" : 12,
+      "totalcost" : 18.6
+    } ],
+    "payment_details" : "Acct:XXXXXXXX0721",
+    "payment_method" : "Gift Certificate",
+    "person" : "Jack Hawk",
+    "phone" : "8326473829",
+    "tax" : 5.76,
+    "time_of_purchase" : "2019-01-22T12:32:04Z",
+    "total_before_tax" : 69.85,
+    "total_with_tax" : 75.61,
+    "vendor" : "West Pizza Dining Foods"
+  }
+}
