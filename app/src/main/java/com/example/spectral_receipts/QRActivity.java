@@ -41,6 +41,7 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
     private static int camId = Camera.CameraInfo.CAMERA_FACING_BACK;
+    public Receipt r;
     String json = "...";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,7 +201,7 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
                     String totalC = arr.getJSONObject(i).getString("totalcost");
                 }
 
-                Receipt r = new Receipt(timeP, vend, addr, phone, pers, payM, payD, extD, arr, totB, ta, totT);
+                r = new Receipt(timeP, vend, addr, phone, pers, payM, payD, extD, arr, totB, ta, totT);
 
             }catch(Exception e){
                 e.printStackTrace();
