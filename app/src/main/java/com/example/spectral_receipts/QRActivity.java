@@ -41,7 +41,7 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
     private static int camId = Camera.CameraInfo.CAMERA_FACING_BACK;
-    public Receipt r;
+    public static Receipt r = null;
     String json = "...";
     @Override
     protected void onCreate(Bundle savedInstanceState) {

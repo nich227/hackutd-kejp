@@ -35,6 +35,9 @@ public class show_receipts extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ((TextView)findViewById(R.id.receipts_scroll_text)).setMovementMethod(new ScrollingMovementMethod());
 
+        if(QRActivity.r == null)
+            return;
+
         AssetManager assets = getAssets();
         String[] files = null;
         try {
@@ -52,7 +55,7 @@ public class show_receipts extends AppCompatActivity {
 
         int i = 0;
         for(String json : json_data) {
-            ((TextView) findViewById(R.id.receipts_scroll_text)).append(json_data.get(i));
+            ((TextView) findViewById(R.id.receipts_scroll_text)).append(QRActivity.r.toString());
             i++;
         }
     }
