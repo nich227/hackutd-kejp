@@ -72,4 +72,5 @@ public class show_receipts extends AppCompatActivity {
                 .replace(",","");
     }
 
+
 }

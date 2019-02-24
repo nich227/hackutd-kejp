@@ -25,9 +25,9 @@ public class Receipt {
         this.tax = ta;
         this.total_w_tax = totW;
         this.id = iD;
-        qrCode = FirebaseDatabase.getInstance().getReference("receipt");
+        qrCode = FirebaseDatabase.getInstance().getReference();
 
-        qrCode.push()getKey();
+        qrCode.push();
     }
 
     public String getTime() {
