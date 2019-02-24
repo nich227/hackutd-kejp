@@ -181,40 +181,33 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
     public String parseString(Result result) {
         try{
                 JSONObject obj = new JSONObject(result.getText());
-                String pageName = obj.getJSONObject("00417230").getString("time_of_purchase");
+                
+                String timeP = obj.getJSONObject(obj.keys().next()).getString("time_of_purchase");
+                String vend = obj.getJSONObject(obj.keys().next()).getString("vendor");
+                String addr = obj.getJSONObject(obj.keys().next()).getString("address");
+                String phone = obj.getJSONObject(obj.keys().next()).getString("phone");
+                String pers = obj.getJSONObject(obj.keys().next()).getString("person");
+                String totB = obj.getJSONObject(obj.keys().next()).getString("total_before_tax");
+                String ta = obj.getJSONObject(obj.keys().next()).getString("tax");
+                String totT = obj.getJSONObject(obj.keys().next()).getString("total_with_tax");
+                String payM = obj.getJSONObject(obj.keys().next()).getString("payment_method");
+                String payD = obj.getJSONObject(obj.keys().next()).getString("payment_details");
+                String extD = obj.getJSONObject(obj.keys().next()).getString("extra_details");
 
-                System.out.println("HERE --------------------------------------------------------------- " + pageName);
 
-                JSONArray arr = obj.getJSONArray("post");
+                JSONArray arr = obj.getJSONArray("items");
                 for (int i = 0; i < arr.length(); i++) {
-                    String post_id = arr.getJSONObject(i).getString("post_id");
-                    System.out.println(post_id);
+                    String name = arr.getJSONObject(i).getString("name");
+                    String quant = arr.getJSONObject(i).getString("quantity");
+                    String priceE = arr.getJSONObject(i).getString("price_each");
+                    String totalC = arr.getJSONObject(i).getString("total_cost");
+                    System.out.println("-----------------------"+name + " " + quant + "  " + priceE + " " + totalC + "--------------------------------------");
                 }
             }catch(Exception e){
                 e.printStackTrace();
             }
             return "Hello world!";
     }
-
-    /*public class ParseJSON {
-        String json = "...";
-        public void main(String[] args) {
-            try{
-                JSONObject obj = new JSONObject(json);
-                String pageName = obj.getJSONObject("pageInfo").getString("pageName");
-
-                System.out.println(pageName);
-
-                JSONArray arr = obj.getJSONArray("posts");
-                for (int i = 0; i < arr.length(); i++) {
-                    String post_id = arr.getJSONObject(i).getString("post_id");
-                    System.out.println(post_id);
-                }
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-
-        }
-    }*/
+    
 }
 
