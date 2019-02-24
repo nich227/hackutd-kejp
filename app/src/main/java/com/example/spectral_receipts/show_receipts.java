@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,6 +35,10 @@ public class show_receipts extends AppCompatActivity {
             }
         });
         receipt_json_file_names = new ArrayList<File>(Arrays.asList(new File("/data").listFiles()));
+
+        ((TextView)findViewById(R.id.receipts_scroll_text)).setText(this.getAllReceiptsData());
+
+
     }
 
     public String getAllReceiptsData(){
@@ -56,8 +61,32 @@ public class show_receipts extends AppCompatActivity {
                              + json_obj.getString("phone")
                              + "\nPerson: "
                              + json_obj.getString("person")
-                             + "\nItems:";
-                   // for()
+                             + "\nItems:\n";
+                    JSONArray items = json_obj.getJSONArray("items");
+                    for(int i = 0; i < items.length(); i++){
+                        JSONObject item_obj = items.getJSONObject(i);
+                        toreturn += "\n"+item_obj.getString("name")
+                                   +"\nquantity:"
+                                   +item_obj.getString("quantity")
+                                   +"\nprice per item:"
+                                   +item_obj.getString("priceeach")
+                                   +"\ntotal cost:"
+                                   +item_obj.getString("totalcost")
+                                   +"\n";
+                    }
+                    toreturn += "total before tax: "
+                             +  json_obj.getString("total_before_tax")
+                             +  "\ntax: "
+                             +  json_obj.getString("tax")
+                             +  "\ntotal with tax: "
+                             +  json_obj.getString("total_with_tax")
+                             +  "\npayment method: "
+                             +  json_obj.getString("payment_method")
+                             +  "\npayment details: "
+                             +  json_obj.getString("payment_details")
+                             +  "\nextra details: "
+                             +  json_obj.getString("extra_details")
+                             +  "\n";
                 }
             } catch(JSONException jse){
                 jse.printStackTrace();

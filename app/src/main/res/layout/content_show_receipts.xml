@@ -31,4 +31,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
+
+    <TextView
+        android:id="@+id/receipts_scroll_text"
+        android:layout_width="405dp"
+        android:layout_height="623dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="45dp"
+        tools:text="@string/title_activity_show_receipts" />
+
 </android.support.constraint.ConstraintLayout>
