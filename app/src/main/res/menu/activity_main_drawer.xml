@@ -8,12 +8,13 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/nav_camera"
+            android:enabled="true"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Scan QR Code" />
+            android:title="@string/action_qr" />
         <item
             android:id="@+id/nav_receipts"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Receipts" />
+            android:title="@string/action_receipts" />
     </group>
 
 </menu>
