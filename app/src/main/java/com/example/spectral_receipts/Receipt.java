@@ -1,14 +1,14 @@
 package com.example.spectral_receipts;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+//import com.google.firebase.database.DatabaseReference;
+//import com.google.firebase.database.FirebaseDatabase;
 
 public class Receipt {
     protected String time, vendor, address, phone, person, payment_method, payment_details, extra_details, id;
     protected String[] items;
     protected double total_before_tax, tax, total_w_tax;
 
-    DatabaseReference qrCode;
+    //DatabaseReference qrCode;
 
     //Constructor that takes in all the parameters from the json file
     Receipt(String t, String v, String add, String pho, String per, String payM, String payD, String extraD, String[] i, double tot, double ta, double totW, String iD) {
@@ -25,9 +25,9 @@ public class Receipt {
         this.tax = ta;
         this.total_w_tax = totW;
         this.id = iD;
-        qrCode = FirebaseDatabase.getInstance().getReference();
+        //qrCode = FirebaseDatabase.getInstance().getReference();
 
-        qrCode.push();
+        //qrCode.push();
     }
 
     public String getTime() {
