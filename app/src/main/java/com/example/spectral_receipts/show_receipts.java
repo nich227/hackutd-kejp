@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,6 +20,8 @@ import java.io.File;
 import java.io.FileReader;
 import org.json.*;
 
+import static com.example.spectral_receipts.R.id.receipts_scroll_text;
+
 public class show_receipts extends AppCompatActivity {
 
     private List<String> receipt_json_file_names = null;
@@ -29,6 +32,7 @@ public class show_receipts extends AppCompatActivity {
         setContentView(R.layout.activity_show_receipts);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        ((TextView)findViewById(receipts_scroll_text)).setMovementMethod(new ScrollingMovementMethod());
 
         AssetManager assets = getAssets();
         String[] files = null;
@@ -41,18 +45,16 @@ public class show_receipts extends AppCompatActivity {
 
         receipt_json_file_names = new ArrayList<>(Arrays.asList(files));
 
-        ((TextView)findViewById(R.id.receipts_scroll_text)).setText(this.getAllReceiptsData(assets));
+        ((TextView)findViewById(receipts_scroll_text)).setText(this.getAllReceiptsData(assets));
     }
 
     public String getAllReceiptsData(AssetManager manager){
-        String toreturn = "";
         byte[] formArray = new byte[1];
         if(receipt_json_file_names == null){
             System.err.println("ERROR: show_receipts.receipt_json_file_names was not properly initialized.");
         } else{
             try {
                 InputStream is;
-                System.out.println("FILES COUNT:::::::::::::::::::::::::::::::::::::: " + receipt_json_file_names.size());
                 for (String in : receipt_json_file_names) {
                      is = manager.open(in);
                      formArray = new byte[is.available()];
@@ -63,7 +65,11 @@ public class show_receipts extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        return new String(formArray);
+        return new String(formArray).replace("{","")
+                .replace("},","").replace("}","")
+                .replace("[","").replace("]","")
+                .replace("_"," ")
+                .replace(",","");
     }
 
 }
