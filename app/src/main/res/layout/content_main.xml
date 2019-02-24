@@ -10,11 +10,33 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="145dp"
-        android:layout_height="20dp"
-        android:text="Spectral Receipts"
+        android:layout_width="321dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="113dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="512dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/app_name"
         android:textAlignment="center"
+        android:textSize="24sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="133dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="58dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="159dp"
+        android:layout_marginEnd="129dp"
+        android:layout_marginBottom="458dp"
+        android:text="@string/nav_header_desc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
