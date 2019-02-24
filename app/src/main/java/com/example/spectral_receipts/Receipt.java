@@ -47,6 +47,7 @@ public class Receipt {
                 + "Total Before Tax: " + total_before_tax
                 + "Tax: " + tax
                 + "Total With Tax: " + total_w_tax + "\n\n";
+        return toreturn;
     }
     
     public String getTime() {
